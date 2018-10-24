@@ -19,7 +19,8 @@ public class Player : MonoBehaviour {
         ill,
         poisoned,
         paralis,
-        dead
+        dead,
+        armor
     }
     [SerializeField]
     status stat;

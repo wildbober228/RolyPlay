@@ -29,8 +29,8 @@ public class MagicPlayer : Player
 
     private void Awake()
     {
-        Max_mana = 50;
-        Mana = 50;
+        Max_mana = 5000;
+        Mana = 5000;
     }
 
 

@@ -6,22 +6,33 @@ public class InterfeisMagic : MagicPlayer
 {
     public Button skill_Add_Health;
     public Button heal;
+    public Button unpoisoned2;
+    public Button UnDead;
+    public Button Armor;
+    public Button Unparalised;
+
 
     public Scrollbar scrool;
     public GameObject Player;
     private void Start()
     {
         skill_Add_Health.onClick.AddListener(() => Skill_Add_Health(Player.GetComponent<MagicPlayer>().Mana, Player.GetComponent<MagicPlayer>().Max_mana,Player,scrool.value));
-        heal.onClick.AddListener(() => ClearNegativEffects(Player,20,2));
-
-
+        heal.onClick.AddListener(()             => ClearNegativEffects(Player, 20,2));
+        unpoisoned2.onClick.AddListener(()      => ClearNegativEffects(Player, 30,3));
+        Unparalised.onClick.AddListener(() => ClearNegativEffects(Player, 85, 4));
+        UnDead.onClick.AddListener(() => ClearNegativEffects(Player, 150, 5));
+        Armor.onClick.AddListener(() => ClearNegativEffects(Player, 50, 6));
     }
 
     public static void Skill_Add_Health(float mana, float max_mana, GameObject entyte,float amount_of_mana)
     {
         Debug.Log("Heal");
         Debug.Log("Mana"+mana);
-        entyte.GetComponent<Player>().Health += (mana*amount_of_mana) / 2;
+        float hel = (mana * amount_of_mana) / 2;
+        if (hel <= entyte.GetComponent<Player>().Health)
+            entyte.GetComponent<Player>().Health += hel;
+        else
+            entyte.GetComponent<Player>().Health = hel;
         mana -= (mana * amount_of_mana);
         entyte.GetComponent<MagicPlayer>().Mana = mana;
     }
@@ -34,39 +45,27 @@ public class InterfeisMagic : MagicPlayer
             if (entyte.GetComponent<Player>().Status == effect)
             {
                 Debug.Log("effect clear");
+               
                 entyte.GetComponent<Player>().Status = 0;
-                entyte.GetComponent<MagicPlayer>().Mana -= 20;
+                
+                entyte.GetComponent<MagicPlayer>().Mana -= amount_of_mana;
+                if(effect == 5 || effect == 4)
+                {
+                    entyte.GetComponent<Player>().Health = 1;
+                }
             }
-        }
-    }
-
-    public static void Heal(GameObject entyte)
-    {
-        if (entyte.GetComponent<MagicPlayer>().Mana >= 20)
-        {
-           
-            if (entyte.GetComponent<Player>().Status == 2)
+            else
             {
-                Debug.Log("effect clear");
-                entyte.GetComponent<Player>().Status = 0;
-                entyte.GetComponent<MagicPlayer>().Mana -= 20;
+                if (effect == 6)
+                    entyte.GetComponent<Player>().Status = 6;
             }
         }
     }
+   
+   
 
-    public static void UnPoisoned(GameObject entyte)
-    {
-        if (entyte.GetComponent<MagicPlayer>().Mana >= 30)
-        {
 
-            if (entyte.GetComponent<Player>().Status == 3)
-            {
-                Debug.Log("effect clear");
-                entyte.GetComponent<Player>().Status = 0;
-                entyte.GetComponent<MagicPlayer>().Mana -= 30;
-            }
-        }
-    }
+
 
 
 
