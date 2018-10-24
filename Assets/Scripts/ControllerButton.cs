@@ -13,9 +13,12 @@ public class ControllerButton : MonoBehaviour {
 
     public GameObject buttleUI;
     public GameObject menuUI;
+ 
+    public Text username;
+    public Text enemyName;
+
 
     public Player player;
-	
 	void Start () {
         // rasa = GetComponent<Dropdown>();
         start.onClick.AddListener(() => start_game(rasa.value,pol.value,name.text));
@@ -28,8 +31,14 @@ public class ControllerButton : MonoBehaviour {
         player.Name = name;
         player.Man_woman = pol;
 
-        menuUI.SetActive(false);
         buttleUI.SetActive(true);
+        username.text = name;
+        enemyName.text = "Уичтожитель всего сущего 3000";
+        
+        menuUI.SetActive(false);
+
+         
+        
 
 
 
