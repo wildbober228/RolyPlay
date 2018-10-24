@@ -13,6 +13,8 @@ public class InterfeisMagic : MagicPlayer
     {
         skill_Add_Health.onClick.AddListener(() => Skill_Add_Health(Player.GetComponent<MagicPlayer>().Mana, Player.GetComponent<MagicPlayer>().Max_mana,Player,scrool.value));
         heal.onClick.AddListener(() => Heal(Player));
+
+
     }
 
     public static void Skill_Add_Health(float mana, float max_mana, GameObject entyte,float amount_of_mana)
@@ -24,9 +26,13 @@ public class InterfeisMagic : MagicPlayer
         entyte.GetComponent<MagicPlayer>().Mana = mana;
     }
 
+    public static void ClearNegativEffects(GameObject entyte,float amount_of_mana)
+    {
+
+    }
+
     public static void Heal(GameObject entyte)
     {
-        Debug.Log("effect clear-1");
         if (entyte.GetComponent<MagicPlayer>().Mana >= 20)
         {
            
@@ -38,6 +44,22 @@ public class InterfeisMagic : MagicPlayer
             }
         }
     }
+
+    public static void UnPoisoned(GameObject entyte)
+    {
+        if (entyte.GetComponent<MagicPlayer>().Mana >= 30)
+        {
+
+            if (entyte.GetComponent<Player>().Status == 3)
+            {
+                Debug.Log("effect clear");
+                entyte.GetComponent<Player>().Status = 0;
+                entyte.GetComponent<MagicPlayer>().Mana -= 30;
+            }
+        }
+    }
+
+
 
 
 }
