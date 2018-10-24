@@ -46,8 +46,16 @@ public class Player : MonoBehaviour {
     float max_health;
     
     int xp;
+    [SerializeField]
+    float damage;
 
-  
+    public float Damage
+    {
+        get { return damage; }
+
+        set { damage = value; }
+
+    }
 
     public int Status
     {
@@ -91,11 +99,13 @@ public class Player : MonoBehaviour {
         set { health = value; }
     }
 
-    private void Start()
+    private void Awake()
     {
-       // magicinter.Player = player;
+        Damage = 20;
+        // magicinter.Player = player;
         set_id();
         name_player = "Edic";
+       
     }
 
     private void set_id()

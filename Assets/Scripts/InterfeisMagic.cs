@@ -10,10 +10,11 @@ public class InterfeisMagic : MagicPlayer
     public Button UnDead;
     public Button Armor;
     public Button Unparalised;
-
+    public Button atck;
 
     public Scrollbar scrool;
     public GameObject Player;
+    public GameObject Enemy;
     private void Start()
     {
         skill_Add_Health.onClick.AddListener(() => Skill_Add_Health(Player.GetComponent<MagicPlayer>().Mana, Player.GetComponent<MagicPlayer>().Max_mana,Player,scrool.value));
@@ -22,6 +23,8 @@ public class InterfeisMagic : MagicPlayer
         Unparalised.onClick.AddListener(() => ClearNegativEffects(Player, 85, 4));
         UnDead.onClick.AddListener(() => ClearNegativEffects(Player, 150, 5));
         Armor.onClick.AddListener(() => ClearNegativEffects(Player, 50, 6));
+        atck.onClick.AddListener(() => Atack(Enemy, 20));
+        
     }
 
     public static void Skill_Add_Health(float mana, float max_mana, GameObject entyte,float amount_of_mana)
@@ -60,6 +63,12 @@ public class InterfeisMagic : MagicPlayer
                     entyte.GetComponent<Player>().Status = 6;
             }
         }
+    }
+
+    static void Atack(GameObject target,float damage)
+    {
+        Debug.Log("Damage"+damage);
+        target.GetComponent<Player>().Health -= damage;
     }
    
    
