@@ -28,7 +28,7 @@ public class ControllerButton : MonoBehaviour {
         player.Name = name;
         player.Man_woman = pol;
 
-        menuUI.SetActive(true);
+        menuUI.SetActive(false);
         buttleUI.SetActive(true);
 
 
