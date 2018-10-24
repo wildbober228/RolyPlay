@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
-   static int id_player = 0;
+    static int id_player = 0;
+    [SerializeField]
     string name_player;
+   
     enum status
     {
         norm,
@@ -15,8 +17,11 @@ public class Player : MonoBehaviour {
         paralis,
         dead
     }
+    [SerializeField]
+    status stat;
     bool can_speak;
-    bool can_go;    
+    bool can_go;
+   
     enum rasa
     {
         human,
@@ -25,6 +30,10 @@ public class Player : MonoBehaviour {
         ork,
         goblin
     }
+    [SerializeField]
+    rasa select_rasa;
+
+    [SerializeField]
     int man_woman;
     int age;
     float health;
@@ -40,6 +49,27 @@ public class Player : MonoBehaviour {
 
     }
 
+    public string Name
+    {
+        get { return name_player; }
+
+        set { name_player = value; }
+    }
+
+    public int Selected_rasa
+    {
+
+        get { return (int)select_rasa;  }
+
+        set { select_rasa = (rasa)value; }
+    }
+    public int Man_woman
+    {
+        get { return man_woman; }
+
+        set { man_woman = value; }
+    }
+
     private void Start()
     {
         set_id();
@@ -50,5 +80,10 @@ public class Player : MonoBehaviour {
     {
         ID = id_player;
         id_player++;
+    }
+
+    private void Update()
+    {
+        Debug.Log("name"+ Name);
     }
 }
