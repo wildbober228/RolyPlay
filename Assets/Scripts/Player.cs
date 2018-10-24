@@ -37,9 +37,16 @@ public class Player : MonoBehaviour {
     int man_woman;
     int age;
     float health;
-    float max_health;
+   float max_health;
     
     int xp;
+
+    public int Status
+    {
+        get { return (int)stat; }
+
+        set { stat = (status)value; }
+    }
 
     public int ID
     {
@@ -69,6 +76,12 @@ public class Player : MonoBehaviour {
 
         set { man_woman = value; }
     }
+    public float Health
+    {
+        get { return health; }
+
+        set { health = value; }
+    }
 
     private void Start()
     {
@@ -82,8 +95,32 @@ public class Player : MonoBehaviour {
         id_player++;
     }
 
-    private void Update()
+    
+
+
+     public void MyUpdate()
     {
-        Debug.Log("name"+ Name);
+        if ( (health *100) / max_health <= 10)
+        {
+            Status = 1;
+        }
+        if ((health * 100) / max_health >= 10)
+        {
+            Status = 0;
+        }
+        if (health == 0)
+        {
+            Status = 5;
+        }
     }
+   
 }
+
+/*
+ 0-norm
+ 1-weak
+ 2-ill
+ 3-poisoned
+ 4-paralis
+ 5-dead  
+ */
