@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class MagicPlayer : Player
 {
+    [SerializeField]
     private float mana;
+    [SerializeField]
     private float max_mana;
 
     private int force_magic;
     
     
    public float Mana
-    {
+   {
         get { return mana; }
 
         set { mana = value; }
@@ -25,6 +27,12 @@ public class MagicPlayer : Player
 
     }
 
-   
+    private void Awake()
+    {
+        Max_mana = 50;
+        Mana = 50;
+    }
+
+
 
 }

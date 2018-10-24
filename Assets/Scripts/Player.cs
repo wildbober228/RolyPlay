@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
+    
+
+    public InterfeisMagic magicinter;
+
     static int id_player = 0;
     [SerializeField]
     string name_player;
@@ -36,10 +40,13 @@ public class Player : MonoBehaviour {
     [SerializeField]
     int man_woman;
     int age;
+    [SerializeField]
     float health;
-   float max_health;
+    float max_health;
     
     int xp;
+
+  
 
     public int Status
     {
@@ -85,6 +92,7 @@ public class Player : MonoBehaviour {
 
     private void Start()
     {
+       // magicinter.Player = player;
         set_id();
         name_player = "Edic";
     }
