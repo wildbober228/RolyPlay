@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
-     int id_player = 0;
+   static int id_player = 0;
     string name_player;
     enum status
     {
@@ -29,6 +29,7 @@ public class Player : MonoBehaviour {
     int age;
     float health;
     float max_health;
+    
     int xp;
 
     public int ID
