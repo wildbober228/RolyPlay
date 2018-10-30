@@ -17,13 +17,13 @@ public class InterfeisMagic : MagicPlayer
     public GameObject Enemy;
     private void Start()
     {
-        skill_Add_Health.onClick.AddListener(() => Skill_Add_Health(Player.GetComponent<MagicPlayer>().Mana, Player.GetComponent<MagicPlayer>().Max_mana,Player,scrool.value));
-        heal.onClick.AddListener(()             => ClearNegativEffects(Player, 20,2));
-        unpoisoned2.onClick.AddListener(()      => ClearNegativEffects(Player, 30,3));
-        Unparalised.onClick.AddListener(() => ClearNegativEffects(Player, 85, 4));
-        UnDead.onClick.AddListener(() => ClearNegativEffects(Player, 150, 5));
-        Armor.onClick.AddListener(() => ClearNegativEffects(Player, 50, 6));
-        atck.onClick.AddListener(() => Atack(Enemy, 20));
+        skill_Add_Health.onClick.AddListener(() => Skill_Add_Health(Player.GetComponent<MagicPlayer>().Mana, Max_mana,Player,scrool.value));
+        heal.onClick.AddListener(()             => ClearNegativEffects(Player, 20, 2));
+        unpoisoned2.onClick.AddListener(()      => ClearNegativEffects(Player, 30, 3));
+        Unparalised.onClick.AddListener(()      => ClearNegativEffects(Player, 85, 4));
+        UnDead.onClick.AddListener(()           => ClearNegativEffects(Player,150, 5));
+        Armor.onClick.AddListener(()            => ClearNegativEffects(Player, 50, 6));
+        atck.onClick.AddListener(()             => Atack(Enemy, 20));
         
     }
 
@@ -32,43 +32,49 @@ public class InterfeisMagic : MagicPlayer
         Debug.Log("Heal");
         Debug.Log("Mana"+mana);
         float hel = (mana * amount_of_mana) / 2;
-        if (hel <= entyte.GetComponent<Player>().Health)
-            entyte.GetComponent<Player>().Health += hel;
-        else
-            entyte.GetComponent<Player>().Health = hel;
-        mana -= (mana * amount_of_mana);
-        entyte.GetComponent<MagicPlayer>().Mana = mana;
+        Player p = entyte.GetComponent<Player>();
+        if (mana != 0)
+        {
+            if (hel <= p.Health)
+                p.Health += hel;
+            else
+                p.Health = hel;
+            mana -= (mana * amount_of_mana);
+            entyte.GetComponent<MagicPlayer>().Mana = mana;
+        }
     }
 
     public static void ClearNegativEffects(GameObject entyte,float amount_of_mana, int effect)
     {
+        Player p = entyte.GetComponent<Player>();
         if (entyte.GetComponent<MagicPlayer>().Mana >= amount_of_mana)
         {
 
-            if (entyte.GetComponent<Player>().Status == effect)
+            if (p.Status == effect && p.Status!=6)
             {
                 Debug.Log("effect clear");
                
-                entyte.GetComponent<Player>().Status = 0;
+                p.Status = 0;
                 
                 entyte.GetComponent<MagicPlayer>().Mana -= amount_of_mana;
                 if(effect == 5 || effect == 4)
                 {
-                    entyte.GetComponent<Player>().Health = 1;
+                    p.Health = 1;
                 }
             }
             else
             {
-                if (effect == 6)
-                    entyte.GetComponent<Player>().Status = 6;
+                if (effect == 6 && p.Status==0)
+                    p.Status = 6;
             }
         }
     }
 
-    static void Atack(GameObject target,float damage)
+    public static void Atack(GameObject target,float damage)
     {
+        Player p = target.GetComponent<Player>();
         Debug.Log("Damage"+damage);
-        target.GetComponent<Player>().Health -= damage;
+        p.Health -= damage;
     }
    
    

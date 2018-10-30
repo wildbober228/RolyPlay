@@ -43,6 +43,7 @@ public class Player : MonoBehaviour {
     int age;
     [SerializeField]
     float health;
+    [SerializeField]
     float max_health;
     
     int xp;
@@ -63,6 +64,8 @@ public class Player : MonoBehaviour {
 
         set { stat = (status)value; }
     }
+
+
 
     public int ID
     {
@@ -96,7 +99,7 @@ public class Player : MonoBehaviour {
     {
         get { return health; }
 
-        set { health = value; }
+        set { if (health + value <= max_health) health = value; else health = max_health; }
     }
 
     private void Awake()
@@ -105,6 +108,7 @@ public class Player : MonoBehaviour {
         // magicinter.Player = player;
         set_id();
         name_player = "Edic";
+        
        
     }
 

@@ -16,7 +16,7 @@ public class MagicPlayer : Player
    {
         get { return mana; }
 
-        set { mana = value; }
+        set { if (mana + value <= max_mana) mana = value; else mana = max_mana; }
     }
 
     public float Max_mana
@@ -31,6 +31,7 @@ public class MagicPlayer : Player
     {
         Max_mana = 5000;
         Mana = 5000;
+        
     }
 
 
