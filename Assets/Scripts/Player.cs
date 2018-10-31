@@ -95,6 +95,12 @@ public class Player : MonoBehaviour {
 
         set { man_woman = value; }
     }
+    public float Max_Health
+    {
+        get { return max_health; }
+
+        set { max_health = value; }
+    }
     public float Health
     {
         get { return health; }
@@ -107,7 +113,7 @@ public class Player : MonoBehaviour {
         Damage = 20;
         // magicinter.Player = player;
         set_id();
-        name_player = "Edic";
+       // name_player = "Edic";
         
        
     }

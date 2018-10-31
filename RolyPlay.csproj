@@ -310,6 +310,7 @@
     <Compile Include="Assets\Scripts\InterfeisMagic.cs" />
     <Compile Include="Assets\Scripts\MagicPlayer.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\UpdateScene.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="C:\Users\Lenovo\AppData\Local\Unity\cache\packages\packages.unity.com\com.unity.package-manager-ui@1.9.11\Editor\Resources\Styles\Main_Dark.uss" />
